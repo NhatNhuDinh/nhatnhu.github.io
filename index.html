@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giới Thiệu Bản Thân</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 60px 0;
+            color: white;
+            position: relative;
+        }
+
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 6px solid rgba(255, 255, 255, 0.3);
+            margin: 0 auto 30px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            animation: float 3s ease-in-out infinite;
+            backdrop-filter: blur(10px);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .name {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: slideInDown 1s ease-out;
+        }
+
+        .title {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+            animation: slideInUp 1s ease-out 0.3s both;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+            animation: fadeIn 1s ease-out 0.6s both;
+        }
+
+        @keyframes slideInDown {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes slideInUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+        }
+
+        .card h3 {
+            color: #333;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+        }
+
+        .card p, .card li {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .card li {
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .card li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-size: 12px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .skill-tag:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .contact-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+            background: linear-gradient(135deg, #764ba2, #667eea);
+        }
+
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .shape {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float-shapes 6s ease-in-out infinite;
+        }
+
+        .shape:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            top: 20%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .shape:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            bottom: 10%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float-shapes {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        @media (max-width: 768px) {
+            .name { font-size: 2.5rem; }
+            .title { font-size: 1.2rem; }
+            .content { grid-template-columns: 1fr; }
+            .contact-links { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <div class="container">
+        <header class="header">
+            <div class="profile-img">👨‍💻</div>
+            <h1 class="name">Nguyễn Văn An</h1>
+            <p class="title">Full-Stack Developer</p>
+            <p class="subtitle">Chào mừng bạn đến với trang cá nhân của tôi! Tôi là một lập trình viên đam mê công nghệ và luôn sẵn sàng học hỏi những điều mới mẻ.</p>
+        </header>
+
+        <div class="content">
+            <div class="card">
+                <h3>
+                    <div class="card-icon">👨‍🎓</div>
+                    Về Tôi
+                </h3>
+                <p>Tôi là một lập trình viên với 3 năm kinh nghiệm trong phát triển web. Tôi có niềm đam mê mãnh liệt với công nghệ và luôn tìm kiếm những thách thức mới để phát triển bản thân.</p>
+                <p>Tôi tin rằng công nghệ có thể thay đổi thế giới và tôi muốn trở thành một phần của sự thay đổi đó. Mục tiêu của tôi là tạo ra những sản phẩm có ý nghĩa và mang lại giá trị thực tế cho người dùng.</p>
+            </div>
+
+            <div class="card">
+                <h3>
+                    <div class="card-icon">🎯</div>
+                    Sở Thích
+                </h3>
+                <ul>
+                    <li>Lập trình và học công nghệ mới</li>
+                    <li>Đọc sách về khoa học và công nghệ</li>
+                    <li>Chơi game và xem phim</li>
+                    <li>Du lịch và khám phá văn hóa mới</li>
+                    <li>Tập thể dục và yoga</li>
+                    <li>Nấu ăn và thử món ăn mới</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>
+                    <div class="card-icon">💼</div>
+                    Kinh Nghiệm
+                </h3>
+                <p><strong>Senior Frontend Developer</strong> - Tech Company (2022-2025)</p>
+                <p>Phát triển và duy trì các ứng dụng web quy mô lớn, làm việc với React, Vue.js và Angular.</p>
+                
+                <p><strong>Full-Stack Developer</strong> - Startup ABC (2021-2022)</p>
+                <p>Xây dựng hệ thống backend với Node.js và database management, phát triển API và tích hợp hệ thống.</p>
+            </div>
+
+            <div class="card">
+                <h3>
+                    <div class="card-icon">🎓</div>
+                    Học Vấn
+                </h3>
+                <p><strong>Cử Nhân Công Nghệ Thông Tin</strong></p>
+                <p>Đại học Bách Khoa Hà Nội (2017-2021)</p>
+                <p>GPA: 3.6/4.0</p>
+                
+                <p><strong>Chứng chỉ chuyên môn:</strong></p>
+                <ul>
+                    <li>AWS Certified Developer</li>
+                    <li>Google Cloud Professional</li>
+                    <li>Microsoft Azure Fundamentals</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>
+                    <div class="card-icon">⚡</div>
+                    Kỹ Năng
+                </h3>
+                <div class="skills-grid">
+                    <div class="skill-tag">JavaScript</div>
+                    <div class="skill-tag">React</div>
+                    <div class="skill-tag">Vue.js</div>
+                    <div class="skill-tag">Node.js</div>
+                    <div class="skill-tag">Python</div>
+                    <div class="skill-tag">MongoDB</div>
+                    <div class="skill-tag">MySQL</div>
+                    <div class="skill-tag">Docker</div>
+                    <div class="skill-tag">AWS</div>
+                    <div class="skill-tag">Git</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>
+                    <div class="card-icon">📞</div>
+                    Liên Hệ
+                </h3>
+                <p>Tôi luôn sẵn sàng kết nối và thảo luận về các dự án thú vị. Hãy liên hệ với tôi qua các kênh sau:</p>
+                <div class="contact-links">
+                    <a href="mailto:nguyenvanan@email.com" class="contact-btn">
+                        📧 Email
+                    </a>
+                    <a href="tel:+84123456789" class="contact-btn">
+                        📱 Điện thoại
+                    </a>
+                    <a href="#" class="contact-btn">
+                        💼 LinkedIn
+                    </a>
+                    <a href="#" class="contact-btn">
+                        🐙 GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
